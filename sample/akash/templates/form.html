@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style> 
+</head>
+<body>
+    {% include 'nav.html' %}
+    <!-- <h1>Contact Us</h1> -->
+    {% if success %}
+        <p style="color: green; font-weight: bold;">Thank you! Your message has been submitted successfully.</p>
+        {% if saved_message %}
+            <div style="background-color: #e7f3e7; padding: 10px; border: 1px solid #d4edda; border-radius: 4px; margin-bottom: 20px;">
+                <h3>Submitted Data:</h3>
+                <p><strong>Name:</strong> {{ saved_message.name }}</p>
+                <p><strong>Email:</strong> {{ saved_message.email }}</p>
+                <p><strong>Message:</strong> {{ saved_message.message }}</p>
+                {% if saved_message.image %}
+                    <p><strong>Image:</strong> <img src="{{ saved_message.image.url }}" alt="Uploaded Image" style="max-width: 200px; max-height: 200px;"></p>
+                {% endif %}
+                <p><strong>Submitted At:</strong> {{ saved_message.submitted_at }}</p>
+            </div>
+        {% endif %}
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

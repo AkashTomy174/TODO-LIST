@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+{% include 'nav.html' %}
+
+{% if name %}
+    <h1>this is the home page {{name}}</h1>
+{% else %}
+    <h1>this is the home page guest</h1>
+{% endif %}
+
+{% if age > 18 %}
+    <p>You are old enough </p>
+{% else %}
+
+'''
+    <p>You are not old enough</p>
+{% endif %}
+</body>
+</html>

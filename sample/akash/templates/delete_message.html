@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .delete-confirmation {
+            background-color: #ffe6e6;
+            border: 1px solid #ff9999;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .message-details {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+        .cancel-link {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .cancel-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <h1>Delete Message</h1>
+    <div class="delete-confirmation">
+        <p>Are you sure you want to delete this message?</p>
+        <div class="message-details">
+            <p><strong>Name:</strong> {{ message.name }}</p>
+            <p><strong>Email:</strong> {{ message.email }}</p>
+            <p><strong>Message:</strong> {{ message.message }}</p>
+            {% if message.image %}
+                <p><strong>Image:</strong> <img src="{{ message.image.url }}" alt="Uploaded Image" style="max-width: 200px; max-height: 200px;"></p>
+            {% endif %}
+            <p><strong>Submitted At:</strong> {{ message.submitted_at }}</p>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Yes, Delete</button>
+            <a href="{% url 'messages' %}" class="cancel-link">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
