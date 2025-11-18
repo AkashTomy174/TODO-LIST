@@ -15,7 +15,7 @@
             background-color: #f9f9f9;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(179, 20, 20, 0.1);
         }
         label {
             display: block;
@@ -44,7 +44,7 @@
             font-size: 16px;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #25ce2e;
         }
     </style> 
 </head>
@@ -52,7 +52,7 @@
     {% include 'nav.html' %}
     <!-- <h1>Contact Us</h1> -->
     {% if success %}
-        <p style="color: green; font-weight: bold;">Thank you! Your message has been submitted successfully.</p>
+        <p style="color: rgb(28, 221, 28); font-weight: bold;">Thank you! Your message has been submitted successfully.</p>
         {% if saved_message %}
             <div style="background-color: #e7f3e7; padding: 10px; border: 1px solid #d4edda; border-radius: 4px; margin-bottom: 20px;">
                 <h3>Submitted Data:</h3>
