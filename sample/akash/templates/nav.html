@@ -6,6 +6,15 @@
         <li><a href="/messages/">veiw students</a></li>
         <li><a href="/todos/">Todos</a></li>
     </ul>
+    <ul style="float:right; list-style:none; margin:0; padding:0;">
+        {% if request.user.is_authenticated %}
+            <li style="float:left; margin-right:10px;">Hello, {{ request.user.username }}</li>
+            <li style="float:left;"><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+            <li style="float:left; margin-right:10px;"><a href="{% url 'login' %}">Login</a></li>
+            <li style="float:left;"><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+    </ul>
 </nav>
 <style>
     nav {
